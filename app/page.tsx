@@ -171,15 +171,20 @@ export default function Home() {
             <div className="h-1 w-20 bg-[#d9bfa4] mx-auto mb-6"></div>
             <p className="text-lg text-[#3d4f39]/70">{getTranslation("eventsSubtitle", language)}</p>
           </div>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {events.map((event, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {events.map((event) => (
               <div
-                key={`home-event-${event.id}-${index}`}
-                className="rounded-xl overflow-hidden bg-white shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02]"
+                key={event.id}
+                className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
               >
-                <div className="relative h-48">
-                  <Image src={event.image || "/placeholder.svg"} alt={event.title} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                <div className="relative aspect-square">
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
                 <div className={`p-6 flex flex-col ${language === "ar" ? "text-right" : ""}`}>
                   <h3 className="text-xl font-semibold text-[#3d4f39] mb-3">{event.title}</h3>
