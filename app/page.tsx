@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { ArrowRight, Calendar, Coffee, MapPin } from "lucide-react"
+import { ArrowRight, Calendar, Coffee, MapPin, Clock } from "lucide-react"
 import Link from 'next/link'
 
 import { Button } from "@/components/ui/button"
@@ -175,20 +175,24 @@ export default function Home() {
             {events.map((event, index) => (
               <div
                 key={`home-event-${event.id}-${index}`}
-                className="rounded-xl overflow-hidden bg-white shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] min-h-[400px] flex flex-col"
+                className="rounded-xl overflow-hidden bg-white shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02]"
               >
                 <div className="relative h-48">
                   <Image src={event.image || "/placeholder.svg"} alt={event.title} fill className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                 </div>
-                <div className={`p-6 flex-1 flex flex-col ${language === "ar" ? "text-right" : ""}`}>
+                <div className={`p-6 flex flex-col ${language === "ar" ? "text-right" : ""}`}>
                   <h3 className="text-xl font-semibold text-[#3d4f39] mb-3">{event.title}</h3>
-                  <p className="text-[#3d4f39]/70 line-clamp-3">{event.description}</p>
-                  <div className={`mt-4 flex items-center gap-2 text-sm text-[#3d4f39]/60 ${language === "ar" ? "flex-row-reverse" : ""}`}>
-                    <Calendar className="h-4 w-4" />
-                    <span>{event.date}</span>
-                    <span className="mx-2">•</span>
-                    <MapPin className="h-4 w-4" />
-                    <span>{event.time}</span>
+                  <p className="text-[#3d4f39]/70 mb-4 line-clamp-2">{event.description}</p>
+                  <div className={`mt-auto flex items-center gap-4 text-sm text-[#3d4f39]/60 ${language === "ar" ? "flex-row-reverse" : ""}`}>
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4" />
+                      <span>{event.date}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      <span>{event.time}</span>
+                    </div>
                   </div>
                 </div>
               </div>
